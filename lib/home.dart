@@ -3,14 +3,22 @@ import 'package:hostel_app/complaint.dart';
 import 'package:hostel_app/status.dart';
 import 'package:hostel_app/upcoming.dart';
 import 'package:hostel_app/notification.dart';
+import 'package:hostel_app/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class MyHome extends StatefulWidget {
+  const MyHome({Key? key}) : super(key: key);
 
+  @override
+  _MyHomeState createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size; //height and width of our device
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 211, 239, 243),
       appBar: AppBar(
         centerTitle: true,
         leading: Icon(Icons.home),
@@ -171,7 +179,7 @@ class Home extends StatelessWidget {
                                 ),
                                 // Spacer(),
                                 Text(
-                                  'UPCOMING',
+                                  'SignOut',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
@@ -181,10 +189,13 @@ class Home extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => Upcoming())));
+                          FirebaseAuth.instance.signOut().then((value) {
+                            print("Signed Out");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyLogin()));
+                          });
                         },
                         child: Container(
                             decoration: BoxDecoration(

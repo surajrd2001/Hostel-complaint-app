@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'hexcolour.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:hostel_app/login.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -8,13 +12,22 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+  //TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/register.png'), fit: BoxFit.cover),
-      ),
+          gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          hexStringToColor("CB2B93"),
+          hexStringToColor("9546C4"),
+          hexStringToColor("5E61F4")
+        ],
+      )),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -27,7 +40,7 @@ class _MyRegisterState extends State<MyRegister> {
               padding: EdgeInsets.only(left: 35, top: 30),
               child: Text(
                 'Create\nAccount',
-                style: TextStyle(color: Colors.white, fontSize: 33),
+                style: TextStyle(color: Colors.white, fontSize: 40),
               ),
             ),
             SingleChildScrollView(
@@ -57,6 +70,7 @@ class _MyRegisterState extends State<MyRegister> {
                                   ),
                                 ),
                                 hintText: "Roll No.",
+                                prefixIcon: Icon(Icons.business_center),
                                 hintStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -82,6 +96,7 @@ class _MyRegisterState extends State<MyRegister> {
                                 ),
                                 hintText: "Name",
                                 hintStyle: TextStyle(color: Colors.white),
+                                prefixIcon: Icon(Icons.account_circle),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -106,6 +121,7 @@ class _MyRegisterState extends State<MyRegister> {
                                 ),
                                 hintText: "Email",
                                 hintStyle: TextStyle(color: Colors.white),
+                                prefixIcon: Icon(Icons.email),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -131,6 +147,7 @@ class _MyRegisterState extends State<MyRegister> {
                                 ),
                                 hintText: "Password",
                                 hintStyle: TextStyle(color: Colors.white),
+                                prefixIcon: Icon(Icons.lock),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -154,8 +171,21 @@ class _MyRegisterState extends State<MyRegister> {
                                 child: IconButton(
                                     color: Colors.white,
                                     onPressed: () {
-                                      Navigator.popAndPushNamed(
-                                          context, 'login');
+                                      FirebaseAuth.instance
+                                          .createUserWithEmailAndPassword(
+                                              email: _emailTextController.text,
+                                              password:
+                                                  _passwordTextController.text)
+                                          .then((value) {
+                                        print("Created New Account");
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MyLogin()));
+                                      }).onError((error, stackTrace) {
+                                        print("Error ${error.toString()}");
+                                      });
                                     },
                                     icon: Icon(
                                       Icons.arrow_forward,
