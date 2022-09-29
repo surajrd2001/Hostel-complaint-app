@@ -49,8 +49,10 @@ android {
         applicationId "com.example.hostel_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 22
+        minSdkVersion 20
+        compileSdkVersion 33
         targetSdkVersion flutter.targetSdkVersion
+        multiDexEnabled true   //used for firebase
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

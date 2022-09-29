@@ -1,10 +1,12 @@
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:hostel_app/complaint.dart';
 import 'package:hostel_app/status.dart';
 import 'package:hostel_app/upcoming.dart';
-import 'package:hostel_app/notification.dart';
 import 'package:hostel_app/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({Key? key}) : super(key: key);
@@ -14,33 +16,46 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  // create object storage of FlutterSecureStorage class
+  final FlutterSecureStorage storage = new FlutterSecureStorage();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size; //height and width of our device
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 211, 239, 243),
       appBar: AppBar(
-        centerTitle: true,
-        leading: Icon(Icons.home),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.notifications_active_rounded,
-              color: Colors.white,
-            ),
-            onPressed: () {},
-          )
-        ],
-        title: Text(
-          'DASHBOARD',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-        ),
         backgroundColor: Color.fromARGB(255, 1, 205, 215),
         elevation: 10,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "DashBoard",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async => {
+                //this is used to signout after authentication
+                await FirebaseAuth.instance.signOut(),
+                //here we delete the object in which uid is stored which delete the uid and new user can able to login
+                await storage.delete(key: "uid"),
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyLogin(),
+                    ),
+                    (route) => false)
+              },
+              child: Text('SignOut'),
+              style: ElevatedButton.styleFrom(primary: Colors.blueGrey),
+            )
+          ],
+        ),
       ),
       body: Stack(
         children: <Widget>[
@@ -103,7 +118,7 @@ class _MyHomeState extends State<MyHome> {
                                 Icon(
                                   Icons.assignment_rounded,
                                   size: 50,
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 3, 158, 235),
                                 ),
                                 // Spacer(),
                                 Text(
@@ -139,7 +154,7 @@ class _MyHomeState extends State<MyHome> {
                                 Icon(
                                   Icons.pending_actions,
                                   size: 50,
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 3, 158, 235),
                                 ),
                                 // Spacer(),
                                 Text(
@@ -175,11 +190,11 @@ class _MyHomeState extends State<MyHome> {
                                 Icon(
                                   Icons.moving,
                                   size: 50,
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 3, 158, 235),
                                 ),
-                                // Spacer(),
+                                //Spacer(),
                                 Text(
-                                  'SignOut',
+                                  'UPCOMING',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
@@ -189,13 +204,10 @@ class _MyHomeState extends State<MyHome> {
                       ),
                       InkWell(
                         onTap: () {
-                          FirebaseAuth.instance.signOut().then((value) {
-                            print("Signed Out");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MyLogin()));
-                          });
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => Upcoming())));
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -214,7 +226,7 @@ class _MyHomeState extends State<MyHome> {
                                 Icon(
                                   Icons.moving,
                                   size: 50,
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 3, 158, 235),
                                 ),
                                 //Spacer(),
                                 Text(

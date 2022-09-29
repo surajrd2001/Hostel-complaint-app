@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'hexcolour.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,9 +13,90 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  //TextEditingController _userNameTextController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  var email = "";
+  var password = "";
+  var confirmPassword = "";
+  var name = "";
+  var roll_no = "";
+  // Create a text controller and use it to retrieve the current value
+  // of the TextField.
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final namecontroller = TextEditingController();
+  final rollcontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  registration() async {
+    if (password == confirmPassword) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        print(userCredential);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Color.fromARGB(255, 143, 3, 213),
+            content: Text(
+              "Registered Successfully. Please Login..",
+              style: TextStyle(fontSize: 20.0),
+            ),
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyLogin(),
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print("Password Provided is too Weak");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.orangeAccent,
+              content: Text(
+                "Password Provided is too Weak",
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
+              ),
+            ),
+          );
+        } else if (e.code == 'email-already-in-use') {
+          print("Account Already exists");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.orangeAccent,
+              content: Text(
+                "Account Already exists",
+                style: TextStyle(fontSize: 18.0, color: Colors.black),
+              ),
+            ),
+          );
+        }
+      }
+    } else {
+      print("Password and Confirm Password doesn't match");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.orangeAccent,
+          content: Text(
+            "Password and Confirm Password doesn't match",
+            style: TextStyle(fontSize: 16.0, color: Colors.black),
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,198 +113,147 @@ class _MyRegisterState extends State<MyRegister> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          title: const Text('  \tCreate Account'),
+          titleTextStyle: TextStyle(fontSize: 30),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 30),
-              child: Text(
-                'Create\nAccount',
-                style: TextStyle(color: Colors.white, fontSize: 40),
-              ),
-            ),
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.28),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 35, right: 35),
-                      child: Column(
-                        children: [
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Roll No.",
-                                prefixIcon: Icon(Icons.business_center),
-                                hintStyle: TextStyle(color: Colors.white),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Name",
-                                hintStyle: TextStyle(color: Colors.white),
-                                prefixIcon: Icon(Icons.account_circle),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Email",
-                                hintStyle: TextStyle(color: Colors.white),
-                                prefixIcon: Icon(Icons.email),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.white),
-                                prefixIcon: Icon(Icons.lock),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Sign Up',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 27,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xff4c505b),
-                                child: IconButton(
-                                    color: Colors.white,
-                                    onPressed: () {
-                                      FirebaseAuth.instance
-                                          .createUserWithEmailAndPassword(
-                                              email: _emailTextController.text,
-                                              password:
-                                                  _passwordTextController.text)
-                                          .then((value) {
-                                        print("Created New Account");
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MyLogin()));
-                                      }).onError((error, stackTrace) {
-                                        print("Error ${error.toString()}");
-                                      });
-                                    },
-                                    icon: Icon(
-                                      Icons.arrow_forward,
-                                    )),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'login');
-                                },
-                                child: Text(
-                                  'Sign In',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.white,
-                                      fontSize: 18),
-                                ),
-                                style: ButtonStyle(),
-                              ),
-                            ],
-                          )
-                        ],
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+            child: ListView(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  child: TextFormField(
+                    autofocus: false,
+                    decoration: InputDecoration(
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      hintText: "Email",
+                      prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    )
-                  ],
+                      errorStyle:
+                          TextStyle(color: Colors.redAccent, fontSize: 15),
+                    ),
+                    controller: emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please Enter Email';
+                      } else if (!value.contains('@')) {
+                        return 'Please Enter Valid Email';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-              ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  child: TextFormField(
+                    style: TextStyle(color: Colors.black),
+                    autofocus: false,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      fillColor: Color.fromARGB(255, 255, 254, 254),
+                      filled: true,
+                      hintText: "Password",
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      errorStyle:
+                          TextStyle(color: Colors.redAccent, fontSize: 15),
+                    ),
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please Enter Password';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  child: TextFormField(
+                    autofocus: false,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      fillColor: Color.fromARGB(255, 255, 254, 254),
+                      filled: true,
+                      hintText: "Confirm Password",
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      errorStyle:
+                          TextStyle(color: Colors.redAccent, fontSize: 15),
+                    ),
+                    controller: confirmPasswordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please Enter Password';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Container(
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // Validate returns true if the form is valid, otherwise false.
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              email = emailController.text;
+                              password = passwordController.text;
+                              confirmPassword = confirmPasswordController.text;
+                            });
+                            registration();
+                          }
+                        },
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 33,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Already have an Account? ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      TextButton(
+                          onPressed: () => {
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder:
+                                        (context, animation1, animation2) =>
+                                            MyLogin(),
+                                    transitionDuration: Duration(seconds: 0),
+                                  ),
+                                )
+                              },
+                          child: Text('Login'))
+                    ],
+                  ),
+                )
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

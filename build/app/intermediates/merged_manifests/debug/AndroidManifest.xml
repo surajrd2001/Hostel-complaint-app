@@ -5,7 +5,7 @@
     android:versionName="1.0.0" >
 
     <uses-sdk
-        android:minSdkVersion="22"
+        android:minSdkVersion="20"
         android:targetSdkVersion="31" />
     <!--
          The INTERNET permission is required for development. Specifically,
@@ -23,7 +23,8 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="hostel_app" >
+        android:label="hostel_app"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name="com.example.hostel_app.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
