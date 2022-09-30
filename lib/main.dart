@@ -6,9 +6,10 @@ import 'package:hostel_app/home.dart';
 import 'package:hostel_app/login.dart';
 import 'package:hostel_app/register.dart';
 
-import 'package:hostel_app/status.dart';
 import 'package:hostel_app/upcoming.dart';
-import 'package:firebase_core/firebase_core.dart';
+
+import 'formstatus.dart';
+//import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,8 +62,8 @@ class MyApp extends StatelessWidget {
               'home': (context) => MyHome(),
               'register': (context) => MyRegister(),
               'login': (context) => MyLogin(),
-              'complaint': (context) => Complaint(),
-              'status': (context) => Status(),
+              'complaint': (context) => FormScreen(),
+              'status': (context) => status(),
               'upcoming': (context) => Upcoming(),
             },
           );

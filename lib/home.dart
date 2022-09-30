@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:hostel_app/complaint.dart';
-import 'package:hostel_app/status.dart';
+
 import 'package:hostel_app/upcoming.dart';
 import 'package:hostel_app/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'formstatus.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size; //height and width of our device
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 211, 239, 243),
+      backgroundColor: Color.fromARGB(255, 226, 243, 246),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 1, 205, 215),
         elevation: 10,
@@ -99,7 +101,7 @@ class _MyHomeState extends State<MyHome> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => Complaint())));
+                                  builder: ((context) => FormScreen())));
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -135,7 +137,7 @@ class _MyHomeState extends State<MyHome> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => Status())));
+                                  builder: ((context) => status())));
                         },
                         child: Container(
                             decoration: BoxDecoration(

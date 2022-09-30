@@ -5,6 +5,8 @@ MERGED from [:firebase_auth] D:\flutter_development\hostel_app\build\firebase_au
 MERGED from [:firebase_auth] D:\flutter_development\hostel_app\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
+MERGED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
 MERGED from [com.google.firebase:firebase-analytics:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\06c7fe4f2370f2607dc0a1e2da67849f\transformed\jetified-firebase-analytics-21.1.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-analytics:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\06c7fe4f2370f2607dc0a1e2da67849f\transformed\jetified-firebase-analytics-21.1.1\AndroidManifest.xml:7:5-20
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\ACER\.gradle\caches\transforms-3\898cbb911d0e06d2c9dea240545edf75\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
@@ -41,12 +43,12 @@ MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] C:\Users
 MERGED from [com.google.firebase:firebase-measurement-connector:19.0.0] C:\Users\ACER\.gradle\caches\transforms-3\93bdab1cbaacd3c75d2cda96ba7a9d24\transformed\jetified-firebase-measurement-connector-19.0.0\AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\ACER\.gradle\caches\transforms-3\5de754888986f466914b1fadddc001cb\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\ACER\.gradle\caches\transforms-3\5de754888986f466914b1fadddc001cb\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
-MERGED from [androidx.core:core:1.6.0] C:\Users\ACER\.gradle\caches\transforms-3\d4be00ef9362846b7e5ef168486a55d7\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.6.0] C:\Users\ACER\.gradle\caches\transforms-3\d4be00ef9362846b7e5ef168486a55d7\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.8.0] C:\Users\ACER\.gradle\caches\transforms-3\feadf51cdffd08d0049cb746009a9522\transformed\core-1.8.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.8.0] C:\Users\ACER\.gradle\caches\transforms-3\feadf51cdffd08d0049cb746009a9522\transformed\core-1.8.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ACER\.gradle\caches\transforms-3\6d1c3b8f6bd91089db4f552b38385514\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ACER\.gradle\caches\transforms-3\6d1c3b8f6bd91089db4f552b38385514\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.6.0] C:\Users\ACER\.gradle\caches\transforms-3\d4be00ef9362846b7e5ef168486a55d7\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.8.0] C:\Users\ACER\.gradle\caches\transforms-3\feadf51cdffd08d0049cb746009a9522\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
 	android:name
 		INJECTED from D:\flutter_development\hostel_app\android\app\src\main\AndroidManifest.xml
 manifest
@@ -57,6 +59,8 @@ INJECTED from D:\flutter_development\hostel_app\android\app\src\main\AndroidMani
 MERGED from D:\flutter_development\hostel_app\android\app\src\main\AndroidManifest.xml:1:1-37:12
 MERGED from [:firebase_auth] D:\flutter_development\hostel_app\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
+MERGED from [:flutter_plugin_android_lifecycle] D:\flutter_development\hostel_app\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] D:\flutter_development\hostel_app\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_secure_storage] D:\flutter_development\hostel_app\build\flutter_secure_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\19c2addc77a9b3f8566c6804366b0253\transformed\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
@@ -68,7 +72,6 @@ MERGED from [com.google.android.gms:play-services-measurement-api:21.1.1] C:\Use
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\ACER\.gradle\caches\transforms-3\fa0784be403a785b7c70fc818359564e\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-installations:17.0.3] C:\Users\ACER\.gradle\caches\transforms-3\9e5fb6863aa45eac4b2615eedb053428\transformed\jetified-firebase-installations-17.0.3\AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-common:20.1.2] C:\Users\ACER\.gradle\caches\transforms-3\dd606989c4b78164729d2bfc9e3cf593\transformed\jetified-firebase-common-20.1.2\AndroidManifest.xml:15:1-40:12
-MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\ACER\.gradle\caches\transforms-3\8ff3d07a7a70a8d1d0876cb5e69503a0\transformed\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-measurement:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\b2e44e937f04cf846bab9efd3e68b741\transformed\jetified-play-services-measurement-21.1.1\AndroidManifest.xml:17:1-46:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\e2b18bfb64d31ec16721e331ae2bb77d\transformed\jetified-play-services-measurement-sdk-21.1.1\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\ACER\.gradle\caches\transforms-3\9095fd7bd4bff87c68a7fccfd6d50658\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
@@ -90,17 +93,19 @@ MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ACER\.gradle\caches\tr
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3775731993ce5714df66b606a351dcce\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\77bbc8a90881ecdef0717718fdaf3375\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\f38285a8eecb9100ac2cb7be6a3f747f\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.6.0] C:\Users\ACER\.gradle\caches\transforms-3\d4be00ef9362846b7e5ef168486a55d7\transformed\core-1.6.0\AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\ACER\.gradle\caches\transforms-3\235c49ff216b27d3f5f0e8fc9cd6f568\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3ce884f48eb8ad58e2ee6b80af7bd957\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\124fee4cc07d0c6cb3cd3ffecdf7b357\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\4d725bc46c64acc2a107fc32e53147e6\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.8.0] C:\Users\ACER\.gradle\caches\transforms-3\feadf51cdffd08d0049cb746009a9522\transformed\core-1.8.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\ACER\.gradle\caches\transforms-3\3dcbd583674bf172fbcdc37fd669f4fd\transformed\exifinterface-1.3.3\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\ACER\.gradle\caches\transforms-3\8ff3d07a7a70a8d1d0876cb5e69503a0\transformed\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\540d754fefb5c2f38ef437f8000557b8\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\ACER\.gradle\caches\transforms-3\584d833dd652fe3ab98fd847a4f1f19e\transformed\jetified-firebase-components-17.0.1\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\fd97457b5b3427a3a1578317572f95f8\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\ACER\.gradle\caches\transforms-3\78a619fb1eadedad460d1eeb589b77d5\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ACER\.gradle\caches\transforms-3\6d1c3b8f6bd91089db4f552b38385514\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\b9c038ebfda95362e3458f70298b9802\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\b58505769f0db2bfba92660d7769fd5c\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3ce884f48eb8ad58e2ee6b80af7bd957\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\124fee4cc07d0c6cb3cd3ffecdf7b357\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\4d725bc46c64acc2a107fc32e53147e6\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ACER\.gradle\caches\transforms-3\700dac1466a6c1ad9c1b8aa38b9c1f26\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\70a0ce51f03c05a6e433c99af904d058\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\efe0a16846c0ea995a87b0bd2f00721e\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\ACER\.gradle\caches\transforms-3\4b58317515d5c29a9115306a3f5acc5b\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
@@ -130,6 +135,10 @@ MERGED from [:firebase_auth] D:\flutter_development\hostel_app\build\firebase_au
 MERGED from [:firebase_auth] D:\flutter_development\hostel_app\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_plugin_android_lifecycle] D:\flutter_development\hostel_app\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_plugin_android_lifecycle] D:\flutter_development\hostel_app\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] D:\flutter_development\hostel_app\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] D:\flutter_development\hostel_app\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_secure_storage] D:\flutter_development\hostel_app\build\flutter_secure_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-9:53
@@ -152,8 +161,6 @@ MERGED from [com.google.firebase:firebase-installations:17.0.3] C:\Users\ACER\.g
 MERGED from [com.google.firebase:firebase-installations:17.0.3] C:\Users\ACER\.gradle\caches\transforms-3\9e5fb6863aa45eac4b2615eedb053428\transformed\jetified-firebase-installations-17.0.3\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-common:20.1.2] C:\Users\ACER\.gradle\caches\transforms-3\dd606989c4b78164729d2bfc9e3cf593\transformed\jetified-firebase-common-20.1.2\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-common:20.1.2] C:\Users\ACER\.gradle\caches\transforms-3\dd606989c4b78164729d2bfc9e3cf593\transformed\jetified-firebase-common-20.1.2\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\ACER\.gradle\caches\transforms-3\8ff3d07a7a70a8d1d0876cb5e69503a0\transformed\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\ACER\.gradle\caches\transforms-3\8ff3d07a7a70a8d1d0876cb5e69503a0\transformed\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-measurement:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\b2e44e937f04cf846bab9efd3e68b741\transformed\jetified-play-services-measurement-21.1.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\b2e44e937f04cf846bab9efd3e68b741\transformed\jetified-play-services-measurement-21.1.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk:21.1.1] C:\Users\ACER\.gradle\caches\transforms-3\e2b18bfb64d31ec16721e331ae2bb77d\transformed\jetified-play-services-measurement-sdk-21.1.1\AndroidManifest.xml:20:5-44
@@ -196,28 +203,32 @@ MERGED from [androidx.activity:activity:1.0.0] C:\Users\ACER\.gradle\caches\tran
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\77bbc8a90881ecdef0717718fdaf3375\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\f38285a8eecb9100ac2cb7be6a3f747f\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\f38285a8eecb9100ac2cb7be6a3f747f\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.6.0] C:\Users\ACER\.gradle\caches\transforms-3\d4be00ef9362846b7e5ef168486a55d7\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.6.0] C:\Users\ACER\.gradle\caches\transforms-3\d4be00ef9362846b7e5ef168486a55d7\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\ACER\.gradle\caches\transforms-3\235c49ff216b27d3f5f0e8fc9cd6f568\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\ACER\.gradle\caches\transforms-3\235c49ff216b27d3f5f0e8fc9cd6f568\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3ce884f48eb8ad58e2ee6b80af7bd957\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3ce884f48eb8ad58e2ee6b80af7bd957\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\124fee4cc07d0c6cb3cd3ffecdf7b357\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\124fee4cc07d0c6cb3cd3ffecdf7b357\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\4d725bc46c64acc2a107fc32e53147e6\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\4d725bc46c64acc2a107fc32e53147e6\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.8.0] C:\Users\ACER\.gradle\caches\transforms-3\feadf51cdffd08d0049cb746009a9522\transformed\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.8.0] C:\Users\ACER\.gradle\caches\transforms-3\feadf51cdffd08d0049cb746009a9522\transformed\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\ACER\.gradle\caches\transforms-3\3dcbd583674bf172fbcdc37fd669f4fd\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\ACER\.gradle\caches\transforms-3\3dcbd583674bf172fbcdc37fd669f4fd\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\ACER\.gradle\caches\transforms-3\8ff3d07a7a70a8d1d0876cb5e69503a0\transformed\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\ACER\.gradle\caches\transforms-3\8ff3d07a7a70a8d1d0876cb5e69503a0\transformed\jetified-security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\540d754fefb5c2f38ef437f8000557b8\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\540d754fefb5c2f38ef437f8000557b8\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\ACER\.gradle\caches\transforms-3\584d833dd652fe3ab98fd847a4f1f19e\transformed\jetified-firebase-components-17.0.1\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\ACER\.gradle\caches\transforms-3\584d833dd652fe3ab98fd847a4f1f19e\transformed\jetified-firebase-components-17.0.1\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\fd97457b5b3427a3a1578317572f95f8\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\fd97457b5b3427a3a1578317572f95f8\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\ACER\.gradle\caches\transforms-3\78a619fb1eadedad460d1eeb589b77d5\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\ACER\.gradle\caches\transforms-3\78a619fb1eadedad460d1eeb589b77d5\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ACER\.gradle\caches\transforms-3\6d1c3b8f6bd91089db4f552b38385514\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ACER\.gradle\caches\transforms-3\6d1c3b8f6bd91089db4f552b38385514\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\b9c038ebfda95362e3458f70298b9802\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\b9c038ebfda95362e3458f70298b9802\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\b58505769f0db2bfba92660d7769fd5c\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\b58505769f0db2bfba92660d7769fd5c\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3ce884f48eb8ad58e2ee6b80af7bd957\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\3ce884f48eb8ad58e2ee6b80af7bd957\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\124fee4cc07d0c6cb3cd3ffecdf7b357\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\124fee4cc07d0c6cb3cd3ffecdf7b357\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\4d725bc46c64acc2a107fc32e53147e6\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\.gradle\caches\transforms-3\4d725bc46c64acc2a107fc32e53147e6\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ACER\.gradle\caches\transforms-3\700dac1466a6c1ad9c1b8aa38b9c1f26\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ACER\.gradle\caches\transforms-3\700dac1466a6c1ad9c1b8aa38b9c1f26\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\70a0ce51f03c05a6e433c99af904d058\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\70a0ce51f03c05a6e433c99af904d058\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\ACER\.gradle\caches\transforms-3\efe0a16846c0ea995a87b0bd2f00721e\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
@@ -284,6 +295,22 @@ ADDED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_cor
 		ADDED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 	android:name
 		ADDED from [:firebase_core] D:\flutter_development\hostel_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+	android:grantUriPermissions
+		ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+	android:authorities
+		ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+	android:exported
+		ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+	android:name
+		ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
+	android:resource
+		ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
+	android:name
+		ADDED from [:image_picker_android] D:\flutter_development\hostel_app\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\ACER\.gradle\caches\transforms-3\898cbb911d0e06d2c9dea240545edf75\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 	android:required

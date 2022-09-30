@@ -36,6 +36,14 @@ dependencies:
   #flutter secure storage for storing uid to continue login without email again 
   flutter_secure_storage: ^6.0.0
   google_fonts: ^3.0.1
+  #form validation and other things
+  form_field_validator: ^1.1.0
+  intl: ^0.17.0
+  lottie: ^1.1.0
+  uuid: ^3.0.6
+  image_picker: ^0.8.5+3
+  im_stepper: ^0.1.2+10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
