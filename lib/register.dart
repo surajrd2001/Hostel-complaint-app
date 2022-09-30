@@ -113,7 +113,7 @@ class _MyRegisterState extends State<MyRegister> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('  \tCreate Account'),
+          title: const Text('     \t   \tCreate Account'),
           titleTextStyle: TextStyle(fontSize: 30),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -121,7 +121,7 @@ class _MyRegisterState extends State<MyRegister> {
         body: Form(
           key: _formKey,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
             child: ListView(
               children: [
                 Container(
