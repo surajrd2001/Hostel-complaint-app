@@ -33,6 +33,7 @@ dependencies:
   #firebase Authentication dependancies 
   firebase_core: ^1.23.0
   firebase_auth: ^3.10.0
+  cloud_firestore: ^3.5.0
   #flutter secure storage for storing uid to continue login without email again 
   flutter_secure_storage: ^6.0.0
   google_fonts: ^3.0.1

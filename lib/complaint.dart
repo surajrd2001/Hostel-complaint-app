@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/services.dart';
 
@@ -11,6 +12,8 @@ import 'package:intl/intl.dart';
 import 'package:hostel_app/formstatus.dart';
 
 import 'complaintsubmit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FormScreen extends StatefulWidget {
   @override
@@ -23,6 +26,13 @@ class FormScreenState extends State<FormScreen> {
   TextEditingController _date = new TextEditingController();
   TextEditingController _room_no = new TextEditingController();
   TextEditingController _problem_description = new TextEditingController();
+  TextEditingController _phoneNo = new TextEditingController();
+  TextEditingController _hostel = new TextEditingController();
+  TextEditingController _complaintTyp = new TextEditingController();
+
+  String hostel = '';
+  String complaint = '';
+
   File? image;
   Future pickImage() async {
     try {
@@ -34,29 +44,18 @@ class FormScreenState extends State<FormScreen> {
       print('Failed to pick an image: $e');
     }
   }
-  // bool isButonActive = true;
-  // late TextEditingController controller;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   controller = TextEditingController();
-  //   controller.addListener(() {
-  //     final isButtonActive = controller.text.isNotEmpty;
-  //     setState(() => this.isButonActive = isButonActive);
-  //   });
-  // }
 
   List hostelNamelist = [
-    {"title": "Hostel B", "value": "1"},
-    {"title": "Hostel C", "value": "2"},
-    {"title": "Hostel D", "value": "3"},
-    {"title": "Jijau Hostel", "value": "4"},
+    {"title": "1. Hostel B", "value": "Hostel B"},
+    {"title": "2. Hostel C", "value": "Hostel C"},
+    {"title": "3. Hostel D", "value": "Hostel D"},
+    {"title": "4. Jijau Hostel", "value": "Jijau Hostel"},
   ];
 
   List complaintTypeList = [
-    {"title": "Electricity", "value": "1"},
-    {"title": "Plumbing", "value": "2"},
-    {"title": "Furniture", "value": "3"},
+    {"title": "1. Electricity", "value": "Electricity"},
+    {"title": "2. Plumbing", "value": "Plumbing"},
+    {"title": "3. Furniture", "value": "Furniture"},
   ];
 
   TextEditingController nameController = TextEditingController();
@@ -66,123 +65,8 @@ class FormScreenState extends State<FormScreen> {
   String defaultValue = "";
   // File? imageFile;
   String _name = "";
-  // TextEditingController _date = TextEditingController();
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  // Widget _pickImage() {
-  //   return Scaffold(
-  //     body: Padding(
-  //       padding: const EdgeInsets.all(12.0),
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           if(imageFile !=null)
-  //             Container(
-  //             width: 34,
-  //             height: 50,
-  //             alignment: Alignment.center,
-  //             decoration: BoxDecoration(
-  //               color: Colors.grey,
-  //               image: DecorationImage(image:FileImage(imageFile) ),
-
-  //               border: Border.all(width: 8, color: Colors.black12),
-  //               borderRadius: BorderRadius.circular(12.0),
-  //             ),
-
-  //              ),
-  //           else
-  //             Container(
-  //               width: 34,
-  //               height: 50,
-  //               alignment: Alignment.center,
-  //               decoration: BoxDecoration(
-  //                 color: Colors.grey,
-  //                 border: Border.all(width: 8, color: Colors.black12),
-  //                 borderRadius: BorderRadius.circular(12.0),
-  //               ),
-  //               child: const Text('img'),
-  //             ),
-
-  //           Row(
-  //             children: [
-  //               Expanded(
-  //                 child: ElevatedButton(
-  //                   onPressed: () => getImage(source: ImageSource.camera),
-  //                   child: const Text(
-  //                     'pick img',
-  //                     style: TextStyle(fontSize: 18),
-  //                   ),
-  //                 ),
-  //               ),
-  //               const SizedBox(
-  //                 width: 20,
-  //               ),
-  //               Expanded(
-  //                   child: ElevatedButton(
-  //                 onPressed: () => getImage(source: ImageSource.gallery),
-  //                 child: const Text(
-  //                   'pick img',
-  //                   style: TextStyle(fontSize: 18),
-  //                 ),
-  //               ))
-  //             ],
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-  // Widget pickImage() {
-  //   return Scaffold(
-  //     body: Column(children: [
-  //       Align(
-  //         alignment: Alignment.center,
-  //         child: Stack(
-  //           children: [
-  //             Container(
-  //               decoration: BoxDecoration(
-  //                 border: Border.all(color: Colors.indigo, width: 5),
-  //                 borderRadius: const BorderRadius.all(
-  //                   Radius.circular(100),
-  //                 ),
-  //               ),
-  //               child: ClipOval(
-  //                 child: Image.network(
-  //                   'https://upload.wikimedia.org/wikipedia/commons/5/5f/Alberto_conversi_profile_pic.jpg',
-  //                   width: 170,
-  //                   height: 170,
-  //                   fit: BoxFit.cover,
-  //                 ),
-  //               ),
-  //             ),
-  //             Positioned(
-  //               bottom: 0,
-  //               right: 5,
-  //               child: IconButton(
-  //                 onPressed: () {},
-  //                 icon: const Icon(
-  //                   Icons.add_a_photo_outlined,
-  //                   color: Colors.blue,
-  //                   size: 30,
-  //                 ),
-  //               ),
-  //             )
-  //           ],
-  //         ),
-  //       ),
-  //       const SizedBox(
-  //         height: 20,
-  //       ),
-  //       Padding(
-  //         padding: const EdgeInsets.all(8.0),
-  //         child: ElevatedButton.icon(
-  //             onPressed: () {},
-  //             icon: const Icon(Icons.add_a_photo_sharp),
-  //             label: const Text('UPLOAD IMAGE')),
-  //       )
-  //     ]),
-  //   );
-  // }
 
   Widget _hostelname() {
     return Material(
@@ -213,7 +97,9 @@ class FormScreenState extends State<FormScreen> {
                   child: Text(e['title']), value: e['value']);
             }).toList(),
           ],
-          onChanged: (value) {}),
+          onChanged: (value) {
+            setState(() => hostel = value.toString());
+          }),
     );
   }
 
@@ -226,7 +112,6 @@ class FormScreenState extends State<FormScreen> {
           decoration: InputDecoration(
             labelStyle: TextStyle(color: Colors.black),
             labelText: 'Select Complaint Type: ',
-            //labelStyle: TextStyle(fontSize: 16.0),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white24, width: 2),
               borderRadius: BorderRadius.circular(25),
@@ -247,14 +132,11 @@ class FormScreenState extends State<FormScreen> {
                   child: Text(e['title']), value: e['value']);
             }).toList(),
           ],
-          onChanged: (value) {}),
+          onChanged: (val) {
+            setState(() => complaint = val.toString());
+          }),
     );
   }
-
-  // Widget _hostelnamelist()
-  // {
-  //   return DropdownButtonFormField(items: items, onChanged: onChanged)
-  // }
 
   Widget _buildName() {
     return Material(
@@ -272,32 +154,9 @@ class FormScreenState extends State<FormScreen> {
             borderRadius: BorderRadius.circular(25),
           ),
         ),
+        controller: nameController,
       ),
     );
-    // return TextFormField(
-
-    //   decoration: InputDecoration(
-
-    //     labelText: 'Name:',
-    //     border: OutlineInputBorder(),
-    //     labelStyle: TextStyle(fontSize: 16.0),
-    //     fillColor: Colors.white70,
-    //     filled: true,
-    //     focusedBorder: OutlineInputBorder(
-    //       borderSide: BorderSide(color: Colors.blueGrey, width: 2),
-    //       borderRadius: BorderRadius.circular(25),
-    //     ),
-    //   ),
-    //   validator: (value) {
-    //     if (value == null || value.isEmpty) {
-    //       return 'Name is required';
-    //     }
-    //     return null;
-    //   },
-    //   onSaved: (value) {
-    //     print(value);
-    //   },
-    // );
   }
 
   Widget _problemDescription() {
@@ -338,38 +197,6 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  // Widget _problemDescription() {
-  //   return TextField(
-  //     textInputAction: TextInputAction.newline,
-  //     decoration: InputDecoration(
-  //       hintText: "Detailed Description",
-  //       labelText: 'Problem Description:',
-  //       labelStyle: TextStyle(fontSize: 16.0),
-  //       enabledBorder: OutlineInputBorder(
-  //         borderSide: BorderSide(color: Colors.blueGrey, width: 2),
-  //         borderRadius: BorderRadius.circular(25),
-  //       ),
-  //       fillColor: Colors.white70,
-  //       filled: true,
-  //       focusedBorder: OutlineInputBorder(
-  //         borderSide: BorderSide(color: Colors.blueGrey, width: 2),
-  //         borderRadius: BorderRadius.circular(25),
-  //       ),
-  //     ),
-  //     obscureText: false,
-  //     validator: (value) {
-  //       if (value == null || value.isEmpty) {
-  //         return 'Name is required';
-  //       }
-  //       return null;
-  //     },
-  //     onSaved: (value) {
-  //       print(value);
-  //     },
-  //     maxLines: 3,
-  //   );
-  // }
-
   Widget _roomNo() {
     return Material(
       elevation: 10,
@@ -378,8 +205,6 @@ class FormScreenState extends State<FormScreen> {
       child: TextFormField(
         controller: _room_no,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-
-        // controller: controller,
         decoration: InputDecoration(
           labelStyle: TextStyle(color: Colors.black, fontSize: 16.0),
           focusedErrorBorder: OutlineInputBorder(
@@ -395,8 +220,6 @@ class FormScreenState extends State<FormScreen> {
             borderSide: BorderSide(color: Colors.white24, width: 2),
             borderRadius: BorderRadius.circular(25),
           ),
-          // fillColor: Colors.white70,
-          // filled: true,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white24, width: 2),
             borderRadius: BorderRadius.circular(25),
@@ -408,68 +231,9 @@ class FormScreenState extends State<FormScreen> {
         ),
         validator:
             MultiValidator([RequiredValidator(errorText: 'Required room no')]),
-        // validator: (value) {
-        //   if (value == null || value.isEmpty) {
-        //     return 'Name is required';
-        //   } else
-        //     null;
-        // },
         onSaved: (value) {
           print(value);
         },
-      ),
-    );
-  }
-
-  Widget _complaintDate() {
-    return Material(
-      elevation: 10,
-      borderRadius: BorderRadius.circular(25),
-      shadowColor: Colors.blueAccent,
-      child: TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        controller: _date,
-        decoration: InputDecoration(
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white24, width: 2),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white24, width: 2),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          labelStyle: TextStyle(color: Colors.black),
-          labelText: "Select Date:",
-          suffixIcon: Icon(
-            Icons.calendar_today_rounded,
-            color: Color.fromARGB(255, 134, 123, 123),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white24, width: 2),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          fillColor: Colors.white70,
-          filled: true,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white24, width: 2),
-            borderRadius: BorderRadius.circular(25),
-          ),
-        ),
-        onTap: () async {
-          DateTime? pickeddate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(2022),
-              lastDate: DateTime.now());
-
-          if (pickeddate != null) {
-            setState(() {
-              _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
-            });
-          }
-        },
-        validator: MultiValidator(
-            [RequiredValidator(errorText: 'Required complaint date')]),
       ),
     );
   }
@@ -480,6 +244,7 @@ class FormScreenState extends State<FormScreen> {
       borderRadius: BorderRadius.circular(25),
       shadowColor: Colors.blueAccent,
       child: TextFormField(
+        controller: _phoneNo,
         decoration: InputDecoration(
           labelText: 'Phone Number: ',
           labelStyle: TextStyle(color: Colors.black),
@@ -554,9 +319,7 @@ class FormScreenState extends State<FormScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    _complaintDate(),
-
-                    SizedBox(height: 23),
+                    SizedBox(height: 20),
                     _phoneNumber(),
                     SizedBox(height: 23),
                     _hostelname(),
@@ -567,13 +330,11 @@ class FormScreenState extends State<FormScreen> {
                     SizedBox(height: 23),
                     _problemDescription(),
                     SizedBox(height: 23),
-
                     buildButton(
                         title: 'Pick Image from Gallery',
                         icon: Icons.add_photo_alternate_rounded,
                         onClicked: () => pickImage()),
                     SizedBox(height: 30),
-
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: Color.fromARGB(222, 11, 195, 215),
@@ -583,15 +344,26 @@ class FormScreenState extends State<FormScreen> {
                               fontSize: 33, fontWeight: FontWeight.bold)),
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   const SnackBar(content: Text('processing data')),
-                          // );
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (context) => status(
-                          //         date: _date.text,
-                          //         room_no: _room_no.text,
-                          //         problem_description:
-                          //             _problem_description.text)));
+                          FirebaseFirestore.instance
+                              .collection("complaint")
+                              .add({
+                            "Phone No.": _phoneNo.text,
+                            "room No.": _room_no.text,
+                            "Discreption": _problem_description.text,
+                            "hostel": hostel.toString(),
+                            "complaint Type": complaint.toString(),
+                            "Timestamp": new DateTime.now()
+                          }).then((value) {
+                            print('the complaint id is ' + value.id);
+
+                            _date.clear();
+                            _room_no.clear();
+                            _problem_description.clear();
+                            _hostel.clear();
+                            _phoneNo.clear();
+                            _complaintTyp.clear();
+                            DateTime.now();
+                          }).catchError((error) => print(error));
 
                           Navigator.push(
                             context,
@@ -605,76 +377,6 @@ class FormScreenState extends State<FormScreen> {
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
-
-                    // RaisedButton(
-                    //   onPressed: () {
-                    //     // isButonActive
-                    //     //     ? () {
-                    //     //         setState(() => isButonActive = false);
-                    //     //       }
-                    //     //     : null,
-                    //     // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>complaintSubmit(),));
-                    //     // Navigator.push(
-                    //     //     context,
-                    //     //     MaterialPageRoute(
-                    //     //         builder: (context) => complaintSubmit())),
-                    //     // if (_formkey.currentState!.validate()) {},
-                    //     // _formkey.currentState!.save(),
-                    //     _formkey.currentState?.validate();
-
-                    //     // Navigator.of(context).push(MaterialPageRoute(
-                    //     //   builder: (context) => complaintSubmit(),
-                    //     // ));
-                    //   },
-                    //   // child: Text(
-                    //   //   'Submit',
-                    //   //   style: TextStyle(
-                    //   //     color: Colors.black,
-                    //   //     fontSize: 16,
-                    //   //   ),
-                    //   // ),
-                    //   padding: EdgeInsets.zero,
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(30))),
-                    //   child: Container(
-                    //     height: 45,
-                    //     padding:
-                    //         EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-                    //     decoration: BoxDecoration(
-                    //         gradient: LinearGradient(
-                    //           colors: [
-                    //             Color.fromARGB(255, 181, 220, 201),
-                    //             Color.fromARGB(255, 199, 208, 224)
-                    //           ],
-                    //           begin: Alignment.centerLeft,
-                    //           end: Alignment.centerRight,
-                    //         ),
-                    //         borderRadius:
-                    //             const BorderRadius.all(Radius.circular(25))),
-                    //     child: Center(
-                    //       child: GestureDetector(
-                    //         onTap: () {},
-                    //         child: Text(
-                    //           'Submit',
-                    //           textAlign: TextAlign.left,
-                    //           style: TextStyle(
-                    //               fontFamily: "Netflix",
-                    //               fontWeight: FontWeight.w600,
-                    //               fontSize: 18,
-                    //               letterSpacing: 0.0,
-                    //               color: Colors.black87),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-
-                    //   //   Navigator.push(context,
-                    //   //    MaterialPageRoute(builder:(context)=> complaintSubmit()),);},
-                    //   //   if (_formkey.currentState!.validate()) {},
-                    //   //   _formkey.currentState!.save(),
-
-                    //   // },
-                    // )
                   ],
                 ),
               ),
@@ -684,13 +386,4 @@ class FormScreenState extends State<FormScreen> {
       ),
     );
   }
-
-  // void getImage({required ImageSource source}) async {
-  //   final file = await ImagePicker().pickImage(source: source);
-  //   if (file?.path != null) {
-  //     setState(() {
-  //       //imageFile = File(file!.path);
-  //     });
-  //   }
-  // }
 }
