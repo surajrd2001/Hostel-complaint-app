@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,6 +24,8 @@ class FormScreen extends StatefulWidget {
 }
 
 class FormScreenState extends State<FormScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   TextEditingController _date = new TextEditingController();
   TextEditingController _room_no = new TextEditingController();
   TextEditingController _problem_description = new TextEditingController();
@@ -61,6 +64,7 @@ class FormScreenState extends State<FormScreen> {
   TextEditingController nameController = TextEditingController();
 
   String defaultValueforComplaint = "";
+  final storage = new FlutterSecureStorage();
 
   String defaultValue = "";
   // File? imageFile;
@@ -68,6 +72,8 @@ class FormScreenState extends State<FormScreen> {
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
+  CollectionReference _reference =
+      FirebaseFirestore.instance.collection('complaint-list');
   Widget _hostelname() {
     return Material(
       elevation: 10,
@@ -197,6 +203,59 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
+  Widget _complaintDate() {
+    return Material(
+      elevation: 10,
+      borderRadius: BorderRadius.circular(25),
+      shadowColor: Colors.blueAccent,
+      child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        controller: _date,
+        decoration: InputDecoration(
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white24, width: 2),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white24, width: 2),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          labelStyle: TextStyle(color: Colors.black),
+          labelText: "Select Date:",
+          suffixIcon: Icon(
+            Icons.calendar_today_rounded,
+            color: Color.fromARGB(255, 134, 123, 123),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white24, width: 2),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          fillColor: Colors.white70,
+          filled: true,
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white24, width: 2),
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
+        onTap: () async {
+          DateTime? pickeddate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2022),
+              lastDate: DateTime.now());
+
+          if (pickeddate != null) {
+            setState(() {
+              _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
+            });
+          }
+        },
+        validator: MultiValidator(
+            [RequiredValidator(errorText: 'Required complaint date')]),
+      ),
+    );
+  }
+
   Widget _roomNo() {
     return Material(
       elevation: 10,
@@ -319,6 +378,7 @@ class FormScreenState extends State<FormScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    _complaintDate(),
                     SizedBox(height: 20),
                     _phoneNumber(),
                     SizedBox(height: 23),
@@ -334,6 +394,7 @@ class FormScreenState extends State<FormScreen> {
                         title: 'Pick Image from Gallery',
                         icon: Icons.add_photo_alternate_rounded,
                         onClicked: () => pickImage()),
+                    //
                     SizedBox(height: 30),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -342,17 +403,20 @@ class FormScreenState extends State<FormScreen> {
                               horizontal: 35, vertical: 20),
                           textStyle: TextStyle(
                               fontSize: 33, fontWeight: FontWeight.bold)),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formkey.currentState!.validate()) {
+                          String? value = await storage.read(key: "uid");
                           FirebaseFirestore.instance
                               .collection("complaint")
                               .add({
+                            "Date": _date.text,
                             "Phone No.": _phoneNo.text,
                             "room No.": _room_no.text,
                             "Discreption": _problem_description.text,
                             "hostel": hostel.toString(),
                             "complaint Type": complaint.toString(),
-                            "Timestamp": new DateTime.now()
+                            "uid": value.toString(),
+                            //"Timestamp": new DateTime.now()
                           }).then((value) {
                             print('the complaint id is ' + value.id);
 

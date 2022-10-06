@@ -34,6 +34,8 @@ dependencies:
   firebase_core: ^1.23.0
   firebase_auth: ^3.10.0
   cloud_firestore: ^3.5.0
+  flutter_auth_buttons: ^0.5.0
+  firebase_storage: ^10.3.10
   #flutter secure storage for storing uid to continue login without email again 
   flutter_secure_storage: ^6.0.0
   google_fonts: ^3.0.1
@@ -44,6 +46,8 @@ dependencies:
   uuid: ^3.0.6
   image_picker: ^0.8.5+3
   im_stepper: ^0.1.2+10
+  file_picker: ^5.2.0+1
+  animated_splash_screen: ^1.3.0
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +70,7 @@ flutter:
   assets:
       - assets/images/
       - assets/icons/
-      - assets/pngicon/
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

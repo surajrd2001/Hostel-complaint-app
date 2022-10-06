@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,12 +10,13 @@ import 'package:hostel_app/register.dart';
 import 'package:hostel_app/upcoming.dart';
 
 import 'formstatus.dart';
+import 'package:page_transition/page_transition.dart';
 //import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   runApp(MyApp());
 }
 
@@ -46,19 +48,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             //here are the conditions for login without the email auth for each time when we logeed in
-            home: FutureBuilder(
-                future: checkLoginStatus(),
-                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                  if (snapshot.data == false) {
-                    return MyLogin();
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Container(
-                        color: Colors.white,
-                        child: Center(child: CircularProgressIndicator()));
-                  }
-                  return MyHome();
-                }),
+            home: Splashscreen(),
+
             routes: {
               'home': (context) => MyHome(),
               'register': (context) => MyRegister(),
@@ -69,5 +60,54 @@ class MyApp extends StatelessWidget {
             },
           );
         });
+  }
+}
+
+class Splashscreen extends StatelessWidget {
+  Splashscreen({Key? key}) : super(key: key);
+
+  final storage = new FlutterSecureStorage();
+
+  Future<bool> checkLoginStatus() async {
+    String? value = await storage.read(key: "uid");
+    if (value == null) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+      splash: Column(
+        children: [
+          Image.asset('assets/images/GCEK_logo.png', height: 200),
+          SizedBox(height: 10),
+          Text(
+            'Hostel Complaint App',
+            style: TextStyle(
+                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+          )
+        ],
+      ),
+      backgroundColor: Color.fromARGB(255, 208, 89, 212),
+      nextScreen: FutureBuilder(
+          future: checkLoginStatus(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.data == false) {
+              return MyLogin();
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Container(
+                  color: Colors.white,
+                  child: Center(child: CircularProgressIndicator()));
+            }
+            return MyHome();
+          }),
+      splashIconSize: 250,
+      duration: 3000,
+      splashTransition: SplashTransition.fadeTransition,
+      pageTransitionType: PageTransitionType.fade,
+    );
   }
 }

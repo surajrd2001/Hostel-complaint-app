@@ -3,6 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hostel_app/complaint.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hostel_app/completed.dart';
+import 'package:hostel_app/running.dart';
 
 // class status extends StatefulWidget {
 //   const status({Key? key}) : super(key: key);
@@ -25,30 +28,78 @@ class status extends StatelessWidget {
     return Material();
   }
 
+  CollectionReference _reference =
+      FirebaseFirestore.instance.collection('complaint-list');
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 1, 205, 215),
-          title: Text('Complaint Status'),
-          centerTitle: true,
-          bottom: TabBar(
-            tabs: [
-              Tab(
-                text: 'Running',
-                icon: Icon(Icons.loop_rounded),
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color.fromARGB(255, 1, 205, 215),
+            centerTitle: true,
+            title: Text('Complaint Status'),
+            bottom: TabBar(
+              labelColor: Colors.black,
+              tabs: [
+                Tab(
+                  text: 'Running',
+                  icon: Icon(Icons.loop_rounded),
+                ),
+                Tab(
+                  text: 'Completed',
+                  icon: Icon(Icons.assignment_turned_in),
+                ),
+              ],
+            ),
+          ),
+          body: Column(
+            children: [
+              // TabBar(
+              //   labelColor: Colors.black,
+              //   tabs: [
+              //     Tab(
+              //       text: 'Running',
+              //       icon: Icon(Icons.loop_rounded),
+              //     ),
+              //     Tab(
+              //       text: 'Completed',
+              //       icon: Icon(Icons.assignment_turned_in),
+              //     ),
+              //   ],
+              // ),
+              Expanded(
+                child: TabBarView(children: [
+                  running(),
+                  completed(),
+                ]),
               ),
-              Tab(
-                text: 'Completed',
-                icon: Icon(Icons.assignment_turned_in),
-              )
             ],
           ),
-        ),
-      ),
-      length: 2,
-    );
+        ));
+    // return DefaultTabController(
+    //   child: Scaffold(
+    //     appBar: AppBar(
+    //       backgroundColor: Color.fromARGB(255, 1, 205, 215),
+    //       title: Text('Complaint Status'),
+    //       centerTitle: true,
+    //       bottom: TabBar(
+    //         tabs: [
+    //           Tab(
+    //             text: 'Running',
+    //             icon: Icon(Icons.loop_rounded),
+    //           ),
+    //           Tab(
+    //             text: 'Completed',
+    //             icon: Icon(Icons.assignment_turned_in),
+    //           )
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    //   length: 2,
+    // );
   }
 }
 
