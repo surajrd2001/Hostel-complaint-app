@@ -23,20 +23,84 @@ class readDataAdmin extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             borderOnForeground: false,
             child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  'Complaint Type: ${data['complaint Type']}' +
-                      '\n' +
-                      'Discreption: ${data['Discreption']}' +
-                      '\n' +
-                      'hostel: ${data['hostel']}' +
-                      '      \t' +
-                      'Room No: ${data['room No.']}' +
-                      '\n' +
-                      'Date: ${data['Date']}',
-                  style: TextStyle(fontSize: 17),
-                ),
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                    color: Colors.black87,
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                                child: Container(
+                                  height: 200,
+                                  width: 300,
+
+                                  child: Card(
+                                    child: new Column(
+                                      children: <Widget>[
+                                        new ElevatedButton(
+                                          onPressed: () {
+                                            FirebaseFirestore.instance
+                                                .collection('complaint')
+                                                .doc(documentId)
+                                                .update({'status': 'true'})
+                                                .then(
+                                                    (value) => print('success'))
+                                                .catchError((error) =>
+                                                    print('failed: $error'));
+                                          },
+                                          child: new Text('Completed'),
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Colors.green,
+                                            onPrimary: Colors.white,
+                                          ),
+                                        ),
+                                        new ElevatedButton(
+                                          onPressed: () {
+                                            FirebaseFirestore.instance
+                                                .collection('complaint')
+                                                .doc(documentId)
+                                                .update({'status': 'false'})
+                                                .then(
+                                                    (value) => print('success'))
+                                                .catchError((error) =>
+                                                    print('failed: $error'));
+                                          },
+                                          child: new Text('Not Completed'),
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Colors.red,
+                                            onPrimary: Colors.white,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                  ),
+
+                                  // semanticContainer: true,
+                                ),
+                              ));
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      'Complaint Type: ${data['complaint Type']}' +
+                          '\n' +
+                          'Discreption: ${data['Discreption']}' +
+                          '\n' +
+                          'hostel: ${data['hostel']}' +
+                          '      \t' +
+                          'Room No: ${data['room No.']}' +
+                          '\n' +
+                          'Date: ${data['Date']}',
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ),
+                ],
               ),
             ),
           );

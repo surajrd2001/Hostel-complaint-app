@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hostel_app/home.dart';
 import 'package:hostel_app/readData.dart';
+import 'package:hostel_app/readDataNotCompleted.dart';
 
 class running extends StatefulWidget {
   const running({Key? key}) : super(key: key);
@@ -48,13 +49,6 @@ class _runningState extends State<running> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           title: readData(documentId: docIDs[index]),
-                          subtitle: Column(
-                            children: <Widget>[
-                              ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text('Not Completed'))
-                            ],
-                          ),
                         ),
                       );
                     });
