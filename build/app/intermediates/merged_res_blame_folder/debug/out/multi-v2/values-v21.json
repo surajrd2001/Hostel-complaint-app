@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\flutter_development\\hostel_app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "C:\\Users\\ANKITA\\flutter_new_new_app\\hostelApp\\Hostel-complaint-app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ACER\\.gradle\\caches\\transforms-3\\feadf51cdffd08d0049cb746009a9522\\transformed\\core-1.8.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\ANKITA\\.gradle\\caches\\transforms-3\\feadf51cdffd08d0049cb746009a9522\\transformed\\core-1.8.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

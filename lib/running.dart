@@ -7,17 +7,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hostel_app/home.dart';
 import 'package:hostel_app/readData.dart';
 
-// class running extends StatelessWidget {
-//   const
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Center(
-//         child: Text('1st tab'),
-//       ),
-//     );
-//   }
-// }
 class running extends StatefulWidget {
   const running({Key? key}) : super(key: key);
   @override
@@ -59,6 +48,13 @@ class _runningState extends State<running> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           title: readData(documentId: docIDs[index]),
+                          subtitle: Column(
+                            children: <Widget>[
+                              ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text('Not Completed'))
+                            ],
+                          ),
                         ),
                       );
                     });

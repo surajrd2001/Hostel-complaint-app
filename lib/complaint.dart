@@ -3,18 +3,19 @@ import 'dart:math';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:hostel_app/formstatus.dart';
-
+import 'package:hostel_app/user_image_picker.dart';
 import 'complaintsubmit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 
 class FormScreen extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class FormScreen extends StatefulWidget {
 
 class FormScreenState extends State<FormScreen> {
   final FirebaseAuth auth = FirebaseAuth.instance;
-
+  late File image1;
   TextEditingController _date = new TextEditingController();
   TextEditingController _room_no = new TextEditingController();
   TextEditingController _problem_description = new TextEditingController();
@@ -37,15 +38,28 @@ class FormScreenState extends State<FormScreen> {
   String complaint = '';
 
   File? image;
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() => this.image = imageTemporary);
-    } on PlatformException catch (e) {
-      print('Failed to pick an image: $e');
-    }
+  // Future pickImage() async {
+  //   try {
+  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //     if (image == null) return;
+  //     final imageTemporary = File(image.path);
+  //     setState(() => this.image = imageTemporary);
+  //   } on PlatformException catch (e) {
+  //     print('Failed to pick an image: $e');
+  //   }
+  // }
+  final user = FirebaseAuth.instance.currentUser!;
+  PlatformFile? pickedFile;
+  Future _pickImage() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+    setState(() {
+      pickedFile = result.files.first;
+    });
+    final path = 'user_images/${pickedFile!.name}';
+    final file = File(pickedFile!.path!);
+    final ref = FirebaseStorage.instance.ref().child(path);
+    ref.putFile(file);
   }
 
   List hostelNamelist = [
@@ -54,6 +68,10 @@ class FormScreenState extends State<FormScreen> {
     {"title": "3. Hostel D", "value": "Hostel D"},
     {"title": "4. Jijau Hostel", "value": "Jijau Hostel"},
   ];
+  File? _userImageFile;
+  void _pickedImage(File image1) {
+    _userImageFile = image1;
+  }
 
   List complaintTypeList = [
     {"title": "1. Electricity", "value": "Electricity"},
@@ -390,10 +408,21 @@ class FormScreenState extends State<FormScreen> {
                     SizedBox(height: 23),
                     _problemDescription(),
                     SizedBox(height: 23),
-                    buildButton(
-                        title: 'Pick Image from Gallery',
-                        icon: Icons.add_photo_alternate_rounded,
-                        onClicked: () => pickImage()),
+                    ElevatedButton.icon(
+                      onPressed: _pickImage,
+                      icon: Icon(Icons.image),
+                      label: Text('pick image from gallery'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        onPrimary: Colors.black87,
+                        minimumSize: const Size(390, 50),
+                        // maximumSize: const Size(200, 200),
+                      ),
+                    ),
+                    // buildButton(
+                    //     title: 'Pick Image from Gallery',
+                    //     icon: Icons.add_photo_alternate_rounded,
+                    //     onClicked: () => pickImage()),
                     //
                     SizedBox(height: 30),
                     ElevatedButton(
@@ -416,6 +445,7 @@ class FormScreenState extends State<FormScreen> {
                             "hostel": hostel.toString(),
                             "complaint Type": complaint.toString(),
                             "uid": value.toString(),
+                            "status": false,
                             //"Timestamp": new DateTime.now()
                           }).then((value) {
                             print('the complaint id is ' + value.id);
