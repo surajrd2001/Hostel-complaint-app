@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_app/home.dart';
 
 // import 'package:uuid/uuid.dart';
 
@@ -81,6 +82,13 @@ class complaintSubmit extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Color.fromARGB(255, 246, 243, 243)),
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHome()),
+                )),
         backgroundColor: Color.fromARGB(255, 1, 205, 215),
       ),
       body: //SingleChildScrollView(

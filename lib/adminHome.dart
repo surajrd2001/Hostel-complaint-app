@@ -117,15 +117,19 @@ class adminHome extends StatefulWidget {
 }
 
 class _adminHome extends State<adminHome> {
+  final FlutterSecureStorage storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
             leading: IconButton(
               icon: Icon(Icons.arrow_back,
                   color: Color.fromARGB(255, 246, 243, 243)),
-              onPressed: () => {
+              onPressed: () async => {
+                await FirebaseAuth.instance.signOut(),
+                await storage.delete(key: "uid"),
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyLogin()),

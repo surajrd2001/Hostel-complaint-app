@@ -90,7 +90,7 @@ class Splashscreen extends StatelessWidget {
           )
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 208, 89, 212),
+      backgroundColor: Color.fromARGB(255, 87, 212, 216),
       nextScreen: FutureBuilder(
           future: checkLoginStatus(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {

@@ -56,23 +56,6 @@ class readDataAdmin extends StatelessWidget {
                                             onPrimary: Colors.white,
                                           ),
                                         ),
-                                        new ElevatedButton(
-                                          onPressed: () {
-                                            FirebaseFirestore.instance
-                                                .collection('complaint')
-                                                .doc(documentId)
-                                                .update({'status': 'false'})
-                                                .then(
-                                                    (value) => print('success'))
-                                                .catchError((error) =>
-                                                    print('failed: $error'));
-                                          },
-                                          child: new Text('Not Completed'),
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Colors.red,
-                                            onPrimary: Colors.white,
-                                          ),
-                                        )
                                       ],
                                     ),
                                     shape: RoundedRectangleBorder(

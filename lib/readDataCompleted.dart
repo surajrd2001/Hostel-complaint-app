@@ -28,13 +28,11 @@ class readDataCompleted extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
-                    'Complaint Type: ${data['complaint Type']}' +
+                    'Complaint Id: $documentId' +
+                        '\n'
+                            'Complaint Type: ${data['complaint Type']}' +
                         '\n' +
                         'Discreption: ${data['Discreption']}' +
-                        '\n' +
-                        'hostel: ${data['hostel']}' +
-                        '      \t' +
-                        'Room No: ${data['room No.']}' +
                         '\n' +
                         'Date: ${data['Date']}',
                     style: TextStyle(fontSize: 17),
@@ -45,7 +43,7 @@ class readDataCompleted extends StatelessWidget {
           }
           // return Text('Complaint Type: ${data['complaint Type']}');
         }
-        return Text('.');
+        return Text('');
       }),
     );
   }
