@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'hexcolour.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hostel_app/login.dart';
+import 'model.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -28,6 +30,16 @@ class _MyRegisterState extends State<MyRegister> {
   final namecontroller = TextEditingController();
   final rollcontroller = TextEditingController();
 
+  final _auth = FirebaseAuth.instance;
+  CollectionReference ref = FirebaseFirestore.instance.collection('users');
+
+  var options = [
+    'user',
+    'admin',
+  ];
+  var _currentItemSelected = "user";
+  var role = "user";
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -42,6 +54,7 @@ class _MyRegisterState extends State<MyRegister> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
+
         print(userCredential);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -52,6 +65,19 @@ class _MyRegisterState extends State<MyRegister> {
             ),
           ),
         );
+        //sending user data to firestore
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+        User? user = _auth.currentUser;
+        UserModel userModel = new UserModel();
+        userModel.email = email;
+        userModel.uid = user!.uid;
+        userModel.role = role;
+
+        await firebaseFirestore
+            .collection("users")
+            .doc(user.uid)
+            .set(userModel.toMap());
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -201,13 +227,59 @@ class _MyRegisterState extends State<MyRegister> {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Role : ",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    DropdownButton<String>(
+                      dropdownColor: Colors.blue[900],
+                      isDense: true,
+                      isExpanded: false,
+                      iconEnabledColor: Colors.white,
+                      focusColor: Colors.white,
+                      items: options.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(
+                            dropDownStringItem,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (newValueSelected) {
+                        setState(() {
+                          _currentItemSelected = newValueSelected!;
+                          role = newValueSelected;
+                        });
+                      },
+                      value: _currentItemSelected,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   height: 70,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           // Validate returns true if the form is valid, otherwise false.
                           if (_formKey.currentState!.validate()) {
                             setState(() {
@@ -215,7 +287,8 @@ class _MyRegisterState extends State<MyRegister> {
                               password = passwordController.text;
                               confirmPassword = confirmPasswordController.text;
                             });
-                            registration();
+
+                            registration(); //method which is define above for sign up
                           }
                         },
                         child: Text(

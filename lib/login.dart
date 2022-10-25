@@ -2,17 +2,20 @@
 
 // import 'dart:html';
 
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hostel_app/adminHome.dart';
+
 import 'package:hostel_app/register.dart';
-import 'package:hostel_app/running.dart';
+
 import 'hexcolour.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hostel_app/home.dart';
-import 'package:hostel_app/adminHome.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:firebase_database/firebase_database.dart';
 
 class MyLogin extends StatefulWidget {
@@ -24,6 +27,8 @@ class MyLogin extends StatefulWidget {
 
 class _MyLoginState extends State<MyLogin> {
   final _formKey = GlobalKey<FormState>();
+
+  String role = 'user';
 
   var email = "";
   var password = "";
@@ -50,57 +55,6 @@ class _MyLoginState extends State<MyLogin> {
       await storage.write(key: "uid", value: userCredential.user?.uid);
       // ignore: deprecated_member_use
       String? value = await storage.read(key: "uid");
-      // await FirebaseDatabase.instance
-      //     .reference()
-      //     .child("complaint")
-      //     .child(userId)
-      //     .once()
-      //     .then((DatabaseEvent event) {
-      //   setState(() {
-      //     if (event == 'SJuaMnzQabdHglxPkjgpuGccNw52') {
-      //       Navigator.push(
-      //           context, MaterialPageRoute(builder: (context) => adminHome()));
-      //     } else {
-      //       Navigator.push(
-      //           context, MaterialPageRoute(builder: (context) => MyHome()));
-      //     }
-      //   });
-      // });
-      //     .then((DataSnapshot snapshot) {
-      //   if (userId == "SJuaMnzQabdHglxPkjgpuGccNw52") {
-      //     Navigator.push(
-      //         context, MaterialPageRoute(builder: (context) => adminHome()));
-      //   } else {
-      //     Navigator.push(
-      //         context, MaterialPageRoute(builder: (context) => MyHome()));
-      //   }
-      // });
-      //     .then((DataSnapshot snapshot) {
-      //   setState(() {
-      //     if (snapshot.value['uid'] == 'Wd7WeEdhwPY7UTRADEUfPD0Oq5o1') {
-      //       Navigator.push(
-      //           context, MaterialPageRoute(builder: (context) => adminHome()));
-      //     } else {
-      //       Navigator.push(
-      //           context, MaterialPageRoute(builder: (context) => MyHome()));
-      //     }
-      //   });
-      // });
-      if (userId == 'SJuaMnzQabdHglxPkjgpuGccNw52') {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => adminHome(),
-          ),
-        );
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MyHome(),
-          ),
-        );
-      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print("No User Found for that Email");
@@ -126,6 +80,32 @@ class _MyLoginState extends State<MyLogin> {
         );
       }
     }
+    _checkRole();
+  }
+
+  void _checkRole() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    final DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user?.uid)
+        .get();
+
+    setState(() {
+      role = snap['Role'];
+    });
+
+    if (role == 'user') {
+      navigateNext(MyHome());
+    } else if (role == 'admin') {
+      navigateNext(adminHome());
+    }
+  }
+
+  void navigateNext(Widget route) {
+    Timer(Duration(milliseconds: 10), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => route));
+    });
   }
 
   @override

@@ -125,8 +125,8 @@ class _adminHome extends State<adminHome> {
       home: Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              icon: Icon(Icons.arrow_back,
-                  color: Color.fromARGB(255, 246, 243, 243)),
+              icon:
+                  Icon(Icons.logout, color: Color.fromARGB(255, 246, 243, 243)),
               onPressed: () async => {
                 await FirebaseAuth.instance.signOut(),
                 await storage.delete(key: "uid"),
@@ -136,6 +136,10 @@ class _adminHome extends State<adminHome> {
                 )
               },
             ),
+            actions: [
+              Padding(padding: EdgeInsets.only(left: 50)),
+              Icon(Icons.verified_user),
+            ],
             title: Text("All Complaints"),
             centerTitle: true,
             backgroundColor: Color.fromARGB(255, 1, 205, 215),
