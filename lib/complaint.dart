@@ -77,8 +77,8 @@ class FormScreenState extends State<FormScreen> {
     {"title": "1. Electricity", "value": "Electricity"},
     {"title": "2. Plumbing", "value": "Plumbing"},
     {"title": "3. Furniture", "value": "Furniture"},
-    {"title": "3. Cleaning", "value": "cleaning"},
-    {"title": "3. Internet", "value": "Internet"},
+    {"title": "4. Cleaning", "value": "cleaning"},
+    {"title": "5. Internet", "value": "Internet"},
   ];
 
   TextEditingController nameController = TextEditingController();

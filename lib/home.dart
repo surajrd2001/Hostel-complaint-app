@@ -27,6 +27,7 @@ class _MyHomeState extends State<MyHome> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 226, 243, 246),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(255, 1, 205, 215),
         elevation: 10,
         title: Row(

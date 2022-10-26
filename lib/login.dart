@@ -9,6 +9,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hostel_app/adminHome.dart';
+import 'package:hostel_app/admins/carpenter.dart';
+import 'package:hostel_app/admins/cleaner.dart';
+import 'package:hostel_app/admins/elctrician.dart';
+import 'package:hostel_app/admins/internet.dart';
+import 'package:hostel_app/admins/plumber.dart';
 
 import 'package:hostel_app/register.dart';
 
@@ -98,6 +103,16 @@ class _MyLoginState extends State<MyLogin> {
       navigateNext(MyHome());
     } else if (role == 'admin') {
       navigateNext(adminHome());
+    } else if (role == 'electrician') {
+      navigateNext(electHome());
+    } else if (role == 'carpenter') {
+      navigateNext(carpentHome());
+    } else if (role == 'plumber') {
+      navigateNext(PlumberHome());
+    } else if (role == 'cleaning') {
+      navigateNext(CleanerHome());
+    } else if (role == 'internet') {
+      navigateNext(InternetHome());
     }
   }
 

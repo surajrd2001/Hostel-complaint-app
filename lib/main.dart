@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,6 +13,7 @@ import 'package:hostel_app/register.dart';
 
 import 'package:hostel_app/upcoming.dart';
 
+import 'adminHome.dart';
 import 'formstatus.dart';
 import 'package:page_transition/page_transition.dart';
 //import 'package:firebase_core/firebase_core.dart';
@@ -94,15 +99,15 @@ class Splashscreen extends StatelessWidget {
       nextScreen: FutureBuilder(
           future: checkLoginStatus(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (snapshot.data == false) {
-              return MyLogin();
+            if (snapshot.data == true) {
+              return MyHome();
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Container(
                   color: Colors.white,
                   child: Center(child: CircularProgressIndicator()));
             }
-            return MyHome();
+            return MyLogin();
           }),
       splashIconSize: 250,
       duration: 3000,
@@ -111,3 +116,18 @@ class Splashscreen extends StatelessWidget {
     );
   }
 }
+
+// String role = "";
+// final user = FirebaseAuth.instance.currentUser!;
+
+// _checkRole() async {
+//   User? user = FirebaseAuth.instance.currentUser;
+//   final DocumentSnapshot snap =
+//       await FirebaseFirestore.instance.collection('users').doc(user?.uid).get();
+
+//   if (role == 'user') {
+//     return MyHome();
+//   } else if (role == 'admin') {
+//     return adminHome();
+//   }
+// }

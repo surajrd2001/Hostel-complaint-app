@@ -36,6 +36,11 @@ class _MyRegisterState extends State<MyRegister> {
   var options = [
     'user',
     'admin',
+    'electrician',
+    'plumber',
+    'cleaning',
+    'carpenter',
+    'internet'
   ];
   var _currentItemSelected = "user";
   var role = "user";
