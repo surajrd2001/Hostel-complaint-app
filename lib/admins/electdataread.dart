@@ -22,7 +22,7 @@ class _electmainpage extends State<electmainpage> {
     String? value = await storage.read(key: "uid");
     await FirebaseFirestore.instance
         .collection('complaint')
-        .where('complaint Type', isEqualTo: 'electricity')
+        .where('complaint Type', isEqualTo: 'Electricity')
         .get()
         .then((snapshot) => snapshot.docs.forEach(
               (documnet) {
