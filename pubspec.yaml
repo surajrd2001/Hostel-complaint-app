@@ -33,6 +33,7 @@ dependencies:
   #firebase Authentication dependancies 
   firebase_core: ^1.23.0
   firebase_auth: ^3.10.0
+  get: ^4.3.8
   cloud_firestore: ^3.5.0
   flutter_auth_buttons: ^0.5.0
   firebase_storage: ^10.3.10

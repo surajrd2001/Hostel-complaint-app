@@ -36,30 +36,26 @@ class FormScreenState extends State<FormScreen> {
 
   String hostel = '';
   String complaint = '';
-
+  String imageUrl = '';
   File? image;
-  // Future pickImage() async {
-  //   try {
-  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //     if (image == null) return;
-  //     final imageTemporary = File(image.path);
-  //     setState(() => this.image = imageTemporary);
-  //   } on PlatformException catch (e) {
-  //     print('Failed to pick an image: $e');
-  //   }
-  // }
+
   final user = FirebaseAuth.instance.currentUser!;
   PlatformFile? pickedFile;
   Future _pickImage() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
-    setState(() {
-      pickedFile = result.files.first;
-    });
-    final path = 'user_images/${pickedFile!.name}';
-    final file = File(pickedFile!.path!);
-    final ref = FirebaseStorage.instance.ref().child(path);
-    ref.putFile(file);
+    ImagePicker imagePicker = ImagePicker();
+    XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+    print('${file?.path}');
+    if (file == null) return;
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceRoot.child('user_images');
+
+    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
+    try {
+      await referenceImageToUpload.putFile(File(file!.path));
+      imageUrl = await referenceImageToUpload.getDownloadURL();
+    } catch (error) {}
   }
 
   List hostelNamelist = [
@@ -367,7 +363,9 @@ class FormScreenState extends State<FormScreen> {
             Text(title),
           ],
         ),
-        onPressed: onClicked,
+        onPressed: () {
+          _pickImage();
+        },
       );
 
   @override
@@ -421,11 +419,6 @@ class FormScreenState extends State<FormScreen> {
                         // maximumSize: const Size(200, 200),
                       ),
                     ),
-                    // buildButton(
-                    //     title: 'Pick Image from Gallery',
-                    //     icon: Icons.add_photo_alternate_rounded,
-                    //     onClicked: () => pickImage()),
-                    //
                     SizedBox(height: 30),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -435,6 +428,11 @@ class FormScreenState extends State<FormScreen> {
                           textStyle: TextStyle(
                               fontSize: 33, fontWeight: FontWeight.bold)),
                       onPressed: () async {
+                        if (imageUrl.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('please upload an img')));
+                          return;
+                        }
                         if (_formkey.currentState!.validate()) {
                           String? value = await storage.read(key: "uid");
                           FirebaseFirestore.instance
@@ -448,6 +446,7 @@ class FormScreenState extends State<FormScreen> {
                             "complaint Type": complaint.toString(),
                             "uid": value.toString(),
                             "status": false,
+                            "image": imageUrl,
                             //"Timestamp": new DateTime.now()
                           }).then((value) {
                             print('the complaint id is ' + value.id);

@@ -26,6 +26,7 @@ class _runningState extends State<running> {
         .get()
         .then((snapshot) => snapshot.docs.forEach(
               (documnet) {
+                print(value);
                 print(documnet.reference);
                 docIDs.add(documnet.reference.id);
               },
@@ -53,14 +54,6 @@ class _runningState extends State<running> {
                       );
                     });
               })),
-      // child:
-      // ListView.builder(
-      //     itemCount: 3,
-      //     itemBuilder: (context, index) {
-      //       return ListTile(
-      //         title: Text('name'),
-      //       );
-      //     })
     );
   }
 }

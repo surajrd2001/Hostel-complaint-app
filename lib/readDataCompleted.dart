@@ -21,27 +21,75 @@ class readDataCompleted extends StatelessWidget {
               elevation: 5,
               shadowColor: Colors.blueAccent,
               color: Color.fromARGB(255, 163, 231, 232),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              borderOnForeground: false,
-              child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    'Complaint Id: $documentId' +
-                        '\n'
-                            'Complaint Type: ${data['complaint Type']}' +
-                        '\n' +
-                        'Discreption: ${data['Discreption']}' +
-                        '\n' +
-                        'Date: ${data['Date']}',
-                    style: TextStyle(fontSize: 17),
-                  ),
-                ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(9.0),
+                    child: ListTile(
+                        title: Text(
+                          'Complaint Type: ${data['complaint Type']}' +
+                              '\n' +
+                              'Descreption: ${data['Discreption']}' +
+                              '\n' +
+                              'hostel: ${data['hostel']}' +
+                              '      \n' +
+                              'Room No: ${data['room No.']}' +
+                              '\n' +
+                              'Date: ${data['Date']}',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        leading: Column(
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                  child: Container(
+                                // width: 100,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        new MaterialPageRoute(
+                                            builder: (context) => Dialog(
+                                                  child: Container(
+                                                    height: 500,
+                                                    width: 300,
+                                                    child: Card(
+                                                      semanticContainer: true,
+                                                      child: InteractiveViewer(
+                                                        panEnabled: false,
+                                                        clipBehavior: Clip.none,
+                                                        child: data.containsKey(
+                                                                'image')
+                                                            ? Image.network(
+                                                                '${data['image']}',
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              )
+                                                            : Container(),
+                                                      ),
+                                                      elevation: 4,
+                                                    ),
+                                                  ),
+                                                )));
+                                  },
+                                  child: Container(
+                                    child: data.containsKey('image')
+                                        ? Image.network(
+                                            '${data['image']}',
+                                            fit: BoxFit.fill,
+                                          )
+                                        : Container(),
+                                  ),
+                                ),
+                              )),
+                            )
+                          ],
+                        )),
+                  )
+                ],
               ),
             );
           }
-          // return Text('Complaint Type: ${data['complaint Type']}');
         }
         return Text('');
       }),
