@@ -1,4 +1,4 @@
-# hostel complaint management app
+# Hostel Management Complaint Redressal App
 
 “Hostel Management Complaint Redressal App” is a native (android & iOS) Application
 developed for managing various complaints that occured in the hostel. For the past few years,
@@ -30,6 +30,15 @@ Back-end:
 ## FlowChart
 
 
+
+![flowchart](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/c5f177d6-0f95-4c88-8b1e-4170a3cce756)
+
+## Future Scope
+   1) Chatbot system for platform query-solving.
+   2) Working on upcoming features like integrating AI/ML into the project.
+   3) Web Application regarding the same.
+   4) help center for students and Wardens regarding application use.
+   5) Integrate it with Hostel Management System. 
 
 
 A few resources to get you started if this is your first Flutter project:
