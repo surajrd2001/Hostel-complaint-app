@@ -1,4 +1,4 @@
-# Hostel Management Complaint Redressal App
+# Hostel Gravience Tracker App
 
 “Hostel Management Complaint Redressal App” is a native (android & iOS) Application
 developed for managing various complaints that occured in the hostel. For the past few years,
@@ -32,6 +32,16 @@ Back-end:
 
 
 ![flowchart](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/c5f177d6-0f95-4c88-8b1e-4170a3cce756)
+
+## ScreenShots
+
+![Screenshot (69)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/83ff2f35-6afe-450a-b812-26817aba05cc)
+![Screenshot (70)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/79fd1932-d3fa-44e6-bf9e-ba575a42ac07)
+![Screenshot (71)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/a2fee2f9-5413-4709-805b-2f2cff6a6adf)
+![Screenshot (72)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/58172520-6e9c-4410-bc69-6d0cc83daec7)
+![Screenshot (74)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/0de4c747-1b89-4479-922e-6dbc813c1ed8)
+![Screenshot (75)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/e6303ea9-c771-413b-a676-f48a12746c7f)
+![Screenshot (76)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/32331c0a-f4f7-4d99-ab96-5e31b53660f0)
 
 ## Future Scope
    1) Chatbot system for platform query-solving.
