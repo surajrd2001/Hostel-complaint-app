@@ -43,6 +43,9 @@ Back-end:
 ![Screenshot (75)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/e6303ea9-c771-413b-a676-f48a12746c7f)
 ![Screenshot (76)](https://github.com/surajrd2001/Hostel-complaint-app/assets/94428989/32331c0a-f4f7-4d99-ab96-5e31b53660f0)
 
+## Video Demonstration
+
+[Watch the Video](https://drive.google.com/file/d/1AKQ4w9TgGVRcy_EmdBzF351UIgd-Cu8g/view?usp=sharing)
 ## Future Scope
    1) Chatbot system for platform query-solving.
    2) Working on upcoming features like integrating AI/ML into the project.
